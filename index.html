@@ -12,85 +12,75 @@
 
     <header class="topbar">
         <div class="site-logo">THE CODEX</div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search the archives...">
-        </div>
-        <div class="user-profile">
-            <span>Sir R.N.C</span>
-            <div class="avatar-circle"></div>
-        </div>
+        <div class="search-bar"><input type="text" placeholder="Search the archives..."></div>
+        <div class="user-profile"><span>Sir R.N.C</span><div class="avatar-circle"></div></div>
     </header>
 
     <aside class="sidebar-nav">
         <div class="nav-section">
-            <h3>MAIN MENU</h3>
-            <ul>
-                <li><a href="index.html" class="active">Dashboard</a></li>
-                <li><a href="#">System Logs</a></li>
-                <li><a href="https://github.com/SirRNCB" target="_blank">GitHub Profile</a></li>
-            </ul>
+            <h3 class="drawer-trigger" onclick="toggleDrawer('explore')">EXPLORE <span class="arrow">▶</span></h3>
+            <ul><li><a href="index.html" class="active">Dashboard</a></li></ul>
         </div>
-
         <div class="nav-section">
-            <h3>PROJECTS</h3>
-            <ul>
-                <li><a href="project_vn.html">Visual Novel</a></li>
-                <li><a href="#">The Silent Verse</a></li>
-                <li><a href="#">Drafts</a></li>
-            </ul>
+            <h3 class="drawer-trigger" onclick="toggleDrawer('projects')">PROJECTS <span class="arrow">▶</span></h3>
+            <ul><li><a href="projects_hub.html">The Manifesto</a></li></ul>
         </div>
-
         <div class="nav-section" style="margin-top: auto;">
             <h3>SYSTEM STATUS</h3>
-            <div style="font-size: 0.8rem; color: #3fb950;">
-                ● OPERATIONAL
-            </div>
+            <div id="system-status" style="font-size: 0.8rem; color: #3fb950;">● OPERATIONAL</div>
         </div>
     </aside>
 
-    <div class="page-wrapper">
-        <main class="main-content ">
+    <div id="drawer-panel" class="drawer-panel">
+        <div id="content-explore" class="drawer-inner">
+            <div class="drawer-header">RECENT ARCHIVES</div>
+            <a href="lore_template.html" class="drawer-item">
+                <div class="drawer-img" style="background: #DC143C;"></div>
+                <div class="drawer-text"><h4>The Hall of Ink</h4><span>Location // Level 4</span></div>
+            </a>
+            <a href="#" class="drawer-item">
+                <div class="drawer-img" style="background: #F7DF1E;"></div>
+                <div class="drawer-text"><h4>Sir R.N.C</h4><span>Character // Author</span></div>
+            </a>
+        </div>
+        <div id="content-projects" class="drawer-inner" style="display: none;">
+            <div class="drawer-header">ACTIVE PROTOCOLS</div>
+            <a href="project_vn.html" class="drawer-item">
+                <div class="drawer-img" style="background: #2ea44f;"></div>
+                <div class="drawer-text"><h4>Project: Echoes</h4><span>Visual Novel</span></div>
+            </a>
+            <a href="#" class="drawer-item">
+                <div class="drawer-img" style="background: #db6d28;"></div>
+                <div class="drawer-text"><h4>Silent Verse</h4><span>Anthology</span></div>
+            </a>
+        </div>
+    </div>
 
-            <header style="text-align: center; padding: 20px 0; border-bottom: 2px solid var(--accent); margin-bottom: 40px;">
-                <h1 style="font-size: 2.5rem; color: white;">ARCHIVE DASHBOARD</h1>
-                <p class="subtitle" style="margin-top: 5px;">"Where all realities converge."</p>
+    <div class="page-wrapper">
+        <main class="main-content layout-dashboard">
+            
+            <header class="header-dashboard">
+                <h1>ARCHIVE DASHBOARD</h1>
+                <p class="subtitle">"Where all realities converge."</p>
             </header>
 
             <section class="stats-grid">
-                <div class="stat-box">
-                    <div class="stat-number">12,405</div>
-                    <div class="stat-label">WORDS LOGGED</div>
-                </div>
-
-                <div class="stat-box">
-                    <div class="stat-number">1</div>
-                    <div class="stat-label">ENTRIES</div>
-                </div>
-
-                <div class="stat-box">
-                    <div class="stat-number">1</div>
-                    <div class="stat-label">WIKI PAGES</div>
-                </div>
-
-                <div class="stat-box">
-                    <div class="stat-number" style="color: var(--gold);">∞</div>
-                    <div class="stat-label">COFFEE</div>
-                </div>
+                <div class="stat-box"><div class="stat-number">12,405</div><div class="stat-label">WORDS LOGGED</div></div>
+                <div class="stat-box"><div class="stat-number">1</div><div class="stat-label">ENTRIES</div></div>
+                <div class="stat-box"><div class="stat-number">1</div><div class="stat-label">WIKI PAGES</div></div>
+                <div class="stat-box"><div class="stat-number text-gold">∞</div><div class="stat-label">COFFEE</div></div>
             </section>
             
             <section>
-                <h2 style="color: #8b949e; border-bottom: 1px solid #30363d; padding-bottom: 10px; margin-bottom: 20px;">ACTIVE PROJECTS</h2>
-                
-                <div class="portal-grid" style="padding: 0; margin: 0; max-width: 100%;">
-                    
+                <h2 class="section-title">ACTIVE PROJECTS</h2>
+                <div class="portal-grid">
                     <a href="project_vn.html" class="card">
                         <div class="card-content">
                             <h2>Visual Novel</h2>
                             <p class="description">A narrative of shadows and choices. Exploring the boundaries between the reader and the void.</p>
-                            <span class="status" style="border-color: var(--accent); color: var(--accent);">Status : In Progress</span>
+                            <span class="status active">Status : In Progress</span>
                         </div>
                     </a>
-
                     <a href="#" class="card">
                         <div class="card-content">
                             <h2>The Silent Verse</h2>
@@ -98,7 +88,6 @@
                             <span class="status">Status : Draft</span>
                         </div>
                     </a>
-
                     <a href="https://github.com/SirRNCB" target="_blank" class="card author-card">
                         <div class="card-content">
                             <h2>The Author</h2>
@@ -106,26 +95,24 @@
                             <span class="status">Profile Access</span>
                         </div>
                     </a>
-
                 </div>
             </section>
 
-            <section style="margin-top: 60px;">
-                <h3 style="color: #8b949e; border-bottom: 1px solid #30363d; padding-bottom: 10px; margin-bottom: 20px;">SYSTEM LOGS</h3>
-                
-                <div style="background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 20px;">
-                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.9rem;">
-                        <li style="margin-bottom: 15px; border-bottom: 1px dashed #30363d; padding-bottom: 10px;">
-                            <span style="color: var(--accent); font-weight: bold;">[2026-01-27]</span> 
-                            <span style="color: var(--text-main);">Initialized The Codex v1.0.</span>
+            <section class="system-logs-section">
+                <h3 class="section-title">SYSTEM LOGS</h3>
+                <div class="log-box">
+                    <ul class="log-list">
+                         <li class="log-item">
+                            <span class="log-tag tag-date">[2026-01-27]</span> 
+                            <span>Initialized The Codex v1.0.</span>
                         </li>
-                        <li style="margin-bottom: 15px; border-bottom: 1px dashed #30363d; padding-bottom: 10px;">
-                            <span style="color: var(--gold); font-weight: bold;">[UPDATE]</span> 
-                            <span style="color: var(--text-main);">Added "Hall of Ink" lore entry to Project: Echoes.</span>
+                        <li class="log-item">
+                            <span class="log-tag tag-update">[UPDATE]</span> 
+                            <span>Added "Hall of Ink" lore entry to Project: Echoes.</span>
                         </li>
-                        <li>
-                            <span style="color: #8b949e; font-weight: bold;">[SYSTEM]</span> 
-                            <span style="color: var(--text-main);">Void Glitch protocol installed. Press 'V' to test stability.</span>
+                        <li class="log-item">
+                            <span class="log-tag tag-system">[SYSTEM]</span> 
+                            <span>Void Glitch protocol installed. Press 'V' to test stability.</span>
                         </li>
                     </ul>
                 </div>
@@ -134,12 +121,7 @@
         </main>
     </div>
 
-    <div class="void-decor-container">
-        
-    </div>
-    
-    <footer>
-        <p>&copy; 2026 Sir R.N.C. Crafted in the Void.</p>
-    </footer>
+    <div class="void-decor-container"></div>
+    <footer><p>&copy; 2026 Sir R.N.C. Crafted in the Void.</p></footer>
 </body>
 </html>

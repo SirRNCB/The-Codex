@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Overview | Sir R.N.C</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="site-logo">THE CODEX</div>
+        <div class="search-bar"><input type="text" placeholder="Search..."></div>
+        <div class="user-profile"><span>Sir R.N.C</span><div class="avatar-circle"></div></div>
+    </header>
+
+    <aside class="sidebar-nav">
+        <div class="nav-section">
+            <h3 class="drawer-trigger" onclick="toggleDrawer('explore')">EXPLORE <span class="arrow">▶</span></h3>
+            <ul><li><a href="index.html">Dashboard</a></li></ul>
+        </div>
+        <div class="nav-section">
+            <h3 class="drawer-trigger" onclick="toggleDrawer('projects')">PROJECTS <span class="arrow">▶</span></h3>
+            <ul><li><a href="projects_hub.html" class="active">The Manifesto</a></li></ul>
+        </div>
+        <div class="nav-section" style="margin-top: auto;">
+            <h3>SYSTEM STATUS</h3>
+            <div id="system-status" style="font-size: 0.8rem; color: #3fb950;">● OPERATIONAL</div>
+        </div>
+    </aside>
+
+    <div id="drawer-panel" class="drawer-panel">
+        <div id="content-explore" class="drawer-inner">
+            <div class="drawer-header">RECENT ARCHIVES</div>
+            <a href="lore_template.html" class="drawer-item">
+                <div class="drawer-img" style="background: #DC143C;"></div>
+                <div class="drawer-text"><h4>The Hall of Ink</h4><span>Location // Level 4</span></div>
+            </a>
+            <a href="#" class="drawer-item">
+                <div class="drawer-img" style="background: #F7DF1E;"></div>
+                <div class="drawer-text"><h4>Sir R.N.C</h4><span>Character // Author</span></div>
+            </a>
+        </div>
+        <div id="content-projects" class="drawer-inner" style="display: none;">
+            <div class="drawer-header">ACTIVE PROTOCOLS</div>
+            <a href="project_vn.html" class="drawer-item">
+                <div class="drawer-img" style="background: #2ea44f;"></div>
+                <div class="drawer-text"><h4>Project: Echoes</h4><span>Visual Novel</span></div>
+            </a>
+            <a href="#" class="drawer-item">
+                <div class="drawer-img" style="background: #db6d28;"></div>
+                <div class="drawer-text"><h4>Silent Verse</h4><span>Anthology</span></div>
+            </a>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <main class="main-content layout-dashboard">
+            
+            <header class="header-page">
+                <h1 style="font-size: 3rem;">THE MANIFESTO</h1>
+                <p class="subtitle">"The blueprint of worlds yet to come."</p>
+            </header>
+
+            <div class="article-body">
+                <p class="flavor-text">
+                    Here lies the categorization of all intellectual properties managed by Sir R.N.C. 
+                    Projects are divided into three tiers of reality.
+                </p>
+
+                <div class="tier-grid">
+                    <div class="tier-card">
+                        <h2>Tier 1: Visual Novels</h2>
+                        <p>Interactive narratives requiring code, art, and complex branching paths. These are the "Heavy" projects.</p>
+                    </div>
+                    <div class="tier-card">
+                        <h2 class="text-gold">Tier 2: Anthologies</h2>
+                        <p>Pure literary collections. The Silent Verse and other short story collections reside here.</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div class="void-decor-container"></div>
+</body>
+</html>
