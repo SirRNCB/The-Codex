@@ -1,9 +1,14 @@
-:root {
+/* =========================================
+   CORE VARIABLES & SETUP
+   ========================================= */
+   :root {
     --bg-color: #0d1117;       /* GitHub Dark Background */
     --card-bg: #161b22;        /* Slightly lighter dark for cards */
     --text-main: #c9d1d9;      /* Soft white text */
     --accent: #DC143C;         /* Crimson Red */
     --gold: #F7DF1E;           /* Gold */
+    --sidebar-width: 250px;    /* Width of the left navigation */
+    --topbar-height: 50px;     /* Height of the top bar */
 }
 
 body {
@@ -12,18 +17,23 @@ body {
     font-family: 'Courier Prime', monospace;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
+    /* Changed to block to allow fixed bars */
+    display: block; 
+    overflow-x: hidden;
 }
 
-header {
+/* =========================================
+   LANDING PAGE STYLES
+   ========================================= */
+
+/* Only applies to the big header on the landing page */
+header:not(.topbar) {
     text-align: center;
     padding: 60px 20px;
     border-bottom: 1px solid #30363d;
     width: 100%;
     max-width: 800px;
+    margin: 0 auto; /* Centers it since body is no longer flex */
 }
 
 h1 {
@@ -34,11 +44,12 @@ h1 {
 }
 
 .subtitle {
-    color: #8b949e; /* Grey text */
+    color: #8b949e;
     font-style: italic;
     margin-top: 10px;
 }
 
+/* The Grid of Cards */
 .portal-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -46,8 +57,10 @@ h1 {
     padding: 40px;
     width: 100%;
     max-width: 1000px;
+    margin: 0 auto; /* Centers the grid */
 }
 
+/* Card Styling */
 .card {
     background-color: var(--card-bg);
     border: 1px solid #30363d;
@@ -57,6 +70,7 @@ h1 {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    display: block; /* Ensures anchor behaves like a box */
 }
 
 .card:hover {
@@ -90,17 +104,263 @@ h2 {
     color: var(--text-main);
 }
 
+/* Author Card Special Effects */
 .author-card:hover h2 {
-    color: var(--gold); /* Turns Gold on hover */
+    color: var(--gold);
 }
 
 .author-card:hover {
-    box-shadow: 0 10px 30px -10px rgba(247, 223, 30, 0.2); /* Gold glow */
+    box-shadow: 0 10px 30px -10px rgba(247, 223, 30, 0.2);
 }
 
 footer {
-    margin-top: auto;
+    text-align: center;
     padding: 20px;
     color: #484f58;
     font-size: 0.8rem;
+    margin-top: 40px;
+}
+
+/* =========================================
+   WIKI LAYOUT
+   ========================================= */
+
+/* --- Fixed Top Bar --- */
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--topbar-height);
+    background-color: #161b22;
+    border-bottom: 1px solid #30363d;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 100;
+    box-sizing: border-box;
+}
+
+.site-logo {
+    font-weight: bold;
+    color: var(--accent);
+    font-size: 1.2rem;
+    margin-right: 40px;
+    letter-spacing: 2px;
+}
+
+.search-bar input {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    color: #c9d1d9;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-family: 'Courier Prime', monospace;
+    width: 300px;
+}
+
+.user-profile {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.avatar-circle {
+    width: 30px;
+    height: 30px;
+    background-color: var(--accent);
+    border-radius: 50%;
+}
+
+/* --- Left Sidebar --- */
+.sidebar-nav {
+    position: fixed;
+    top: var(--topbar-height);
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100%;
+    background-color: #0d1117;
+    border-right: 1px solid #30363d;
+    padding: 20px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.nav-section {
+    margin-bottom: 30px;
+}
+
+.nav-section h3 {
+    font-size: 0.8rem;
+    color: #8b949e;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 5px;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li a {
+    display: block;
+    color: var(--text-main);
+    text-decoration: none;
+    padding: 8px 0;
+    transition: color 0.2s;
+    font-size: 0.9rem;
+}
+
+.sidebar-nav li a:hover {
+    color: var(--accent);
+    padding-left: 5px; /* Tiny slide effect */
+}
+
+.sidebar-nav li a.active {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+/* --- Main Content Wrapper --- */
+.page-wrapper {
+    margin-top: var(--topbar-height);
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+    padding: 40px;
+}
+
+.main-content {
+    max-width: 1000px; /* Limits width so text is readable */
+    margin: 0 auto;
+}
+
+.article-header {
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.article-header h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.article-actions button {
+    background: none;
+    border: 1px solid #30363d;
+    color: var(--accent);
+    padding: 5px 10px;
+    cursor: pointer;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.8rem;
+    margin-left: 10px;
+}
+
+.article-actions button:hover {
+    background: var(--accent);
+    color: white;
+}
+
+/* --- The Article Body & Floating Infobox --- */
+
+.article-body {
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.flavor-text {
+    font-style: italic;
+    color: #8b949e;
+    border-left: 3px solid var(--accent);
+    padding-left: 15px;
+    margin-bottom: 30px;
+}
+
+/* The Floating Infobox */
+.infobox {
+    float: right; /* Makes text wrap around it */
+    width: 300px;
+    background-color: #161b22;
+    border: 1px solid var(--accent);
+    margin-left: 30px;
+    margin-bottom: 20px;
+    box-shadow: 5px 5px 0px #0d1117;
+}
+
+.infobox-header {
+    background-color: var(--accent);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.infobox-image img {
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid #30363d;
+}
+
+.infobox-data {
+    padding: 15px;
+}
+
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    border-bottom: 1px dashed #30363d;
+    padding-bottom: 4px;
+}
+
+.data-row:last-child {
+    border-bottom: none;
+}
+
+.label { font-weight: bold; }
+.value { color: #8b949e; text-align: right; }
+
+/* Mobile Responsiveness for Wiki */
+@media (max-width: 900px) {
+    .sidebar-nav { display: none; } /* Hide sidebar on mobile */
+    .page-wrapper { margin-left: 0; } /* Reset margin */
+    .infobox { 
+        float: none; 
+        width: 100%; 
+        margin: 0 0 20px 0; 
+    }
+}
+
+/* =========================================
+   GLITCH EFFECT
+   ========================================= */
+
+@keyframes violent-shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-3px, -2px) rotate(-1deg); }
+    20% { transform: translate(-6px, 0px) rotate(1deg); }
+    30% { transform: translate(6px, 4px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-3px, 2px) rotate(-1deg); }
+    60% { transform: translate(-6px, 1px) rotate(0deg); }
+    70% { transform: translate(6px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 4px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.void-glitch {
+    animation: violent-shake 0.1s infinite; 
+    filter: invert(100%) contrast(150%) hue-rotate(90deg);
+    overflow: hidden;
 }
