@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Hall of Ink | The Codex</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="site-logo">THE CODEX</div>
+        <div class="search-bar"><input type="text" placeholder="Search the archives..."></div>
+        <div class="user-profile"><span>Sir R.N.C</span><div class="avatar-circle"></div></div>
+    </header>
+
+    <aside class="sidebar-nav">
+        <div class="nav-section">
+            <h3 class="drawer-trigger" onclick="toggleDrawer('explore')">EXPLORE <span class="arrow">▶</span></h3>
+            <ul><li><a href="index.html">Dashboard</a></li></ul>
+        </div>
+        <div class="nav-section">
+            <h3 class="drawer-trigger" onclick="toggleDrawer('projects')">PROJECTS <span class="arrow">▶</span></h3>
+            <ul><li><a href="projects_hub.html">The Manifesto</a></li></ul>
+        </div>
+        <div class="nav-section">
+            <h3>SYSTEM</h3>
+            <ul><li class="drawer-trigger" onclick="openSettings()"><span>⚙ Parameters</span></li></ul>
+        </div>
+        <div class="nav-section" style="margin-top: auto;">
+            <h3>SYSTEM STATUS</h3>
+            <div id="system-status">● OPERATIONAL</div>
+        </div>
+    </aside>
+
+    <div id="drawer-panel" class="drawer-panel">
+        <div id="content-explore" class="drawer-inner">
+            <div class="drawer-header">RECENT ARCHIVES</div>
+            <a href="lore_template.html" class="drawer-item">
+                <div class="drawer-img" style="background: #DC143C;"></div>
+                <div class="drawer-text"><h4>The Hall of Ink</h4><span>Location // Level 4</span></div>
+            </a>
+            <a href="#" class="drawer-item">
+                <div class="drawer-img" style="background: #F7DF1E;"></div>
+                <div class="drawer-text"><h4>Sir R.N.C</h4><span>Character // Author</span></div>
+            </a>
+        </div>
+        <div id="content-projects" class="drawer-inner" style="display: none;">
+            <div class="drawer-header">ACTIVE PROTOCOLS</div>
+            <a href="project_vn.html" class="drawer-item">
+                <div class="drawer-img" style="background: #2ea44f;"></div>
+                <div class="drawer-text"><h4>Project: Echoes</h4><span>Visual Novel</span></div>
+            </a>
+            <a href="#" class="drawer-item">
+                <div class="drawer-img" style="background: #db6d28;"></div>
+                <div class="drawer-text"><h4>Silent Verse</h4><span>Anthology</span></div>
+            </a>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <main class="main-content layout-reader">
+            <header class="article-header">
+                <h1>The Hall of Ink</h1>
+                <div class="article-actions"><button>EDIT</button><button>HISTORY</button></div>
+            </header>
+
+            <div class="article-body">
+                <aside class="infobox">
+                    <div class="infobox-header">The Hall of Ink</div>
+                    <div class="infobox-image">
+                        <img src="https://via.placeholder.com/300x200/0d1117/DC143C?text=Server+Icon" alt="Hall of Ink">
+                    </div>
+                    <div class="infobox-data">
+                        <div class="data-row"><span class="label">Type</span><span class="value">Community Server</span></div>
+                        <div class="data-row"><span class="label">Platform</span><span class="value">Discord</span></div>
+                        <div class="data-row"><span class="label">Est.</span><span class="value">January 2026</span></div>
+                        <div class="data-row"><span class="label">Status</span><span class="value">Open</span></div>
+                        <div class="data-row"><span class="label">Access</span><span class="value text-restricted"><a href="#" style="color:var(--accent);">Invite Link</a></span></div>
+                    </div>
+                </aside>
+
+                <p class="flavor-text">"A server dedicated to my community and the fans who read my works and support me."</p>
+                <p><strong>The Hall of Ink</strong> is the official Discord community established by Sir R.N.C. It serves as the central communications hub for followers of the author's work, providing a direct line of contact between the creator and the audience.</p>
+
+                <h2>Structure & Organization</h2>
+                <p>The server is organized into specific categories designed to facilitate different types of interaction:</p>
+                <ul>
+                    <li><strong>The Scriptorium:</strong> The primary social space for general conversation and community bonding.</li>
+                    <li><strong>The Archives:</strong> A dedicated workspace for writers to share works-in-progress (WIPs), request feedback, and access writing resources.</li>
+                    <li><strong>The Trials:</strong> An interactive zone featuring writing sprints, prompts, and community challenges.</li>
+                    <li><strong>Echoes:</strong> Voice channels for live discussions, readings, and study sessions.</li>
+                </ul>
+
+                <h2>Purpose</h2>
+                <p>Established in January 2026, the primary goal of The Hall of Ink is to foster a supportive environment for both consumers and creators of fiction. It allows readers to receive real-time notifications regarding <em>Project: Visual Novel</em> and <em>The Silent Verse</em>.</p>
+            </div>
+        </main>
+    </div>
+    
+    <div id="settings-modal" class="modal-overlay">
+        <div class="modal-window">
+            <div class="modal-header"><h2>SYSTEM CONFIGURATION</h2><span class="close-btn" onclick="closeSettings()">×</span></div>
+            <div class="modal-body">
+                <div class="setting-group"><label for="theme-select">INTERFACE THEME</label><div class="select-wrapper"><select id="theme-select" onchange="applySettings()"><option value="dark">Void Dark (Default)</option><option value="light">Paper Light</option></select></div></div>
+                <div class="setting-group"><label for="filter-select">VISION CALIBRATION</label><div class="select-wrapper"><select id="filter-select" onchange="applySettings()"><option value="none">Standard Vision</option><option value="deuteranopia">Deuteranopia (Green-Blind)</option><option value="tritanopia">Tritanopia (Blue-Blind)</option><option value="protanopia">Protanopia (Red-Blind)</option></select></div></div>
+            </div>
+            <div class="modal-footer"><p style="font-size: 0.7rem; color: var(--text-muted);">Changes apply automatically.</p></div>
+        </div>
+    </div>
+
+    <div class="void-decor-container"></div>
+</body>
+</html>

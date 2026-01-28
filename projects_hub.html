@@ -24,9 +24,13 @@
             <h3 class="drawer-trigger" onclick="toggleDrawer('projects')">PROJECTS <span class="arrow">▶</span></h3>
             <ul><li><a href="projects_hub.html" class="active">The Manifesto</a></li></ul>
         </div>
+        <div class="nav-section">
+            <h3>SYSTEM</h3>
+            <ul><li class="drawer-trigger" onclick="openSettings()"><span>⚙ Parameters</span></li></ul>
+        </div>
         <div class="nav-section" style="margin-top: auto;">
             <h3>SYSTEM STATUS</h3>
-            <div id="system-status" style="font-size: 0.8rem; color: #3fb950;">● OPERATIONAL</div>
+            <div id="system-status">● OPERATIONAL</div>
         </div>
     </aside>
 
@@ -66,22 +70,74 @@
             <div class="article-body">
                 <p class="flavor-text">
                     Here lies the categorization of all intellectual properties managed by Sir R.N.C. 
-                    Projects are divided into three tiers of reality.
+                    Projects are divided into specific formats.
                 </p>
 
-                <div class="tier-grid">
-                    <div class="tier-card">
-                        <h2>Tier 1: Visual Novels</h2>
-                        <p>Interactive narratives requiring code, art, and complex branching paths. These are the "Heavy" projects.</p>
+                <div class="portal-grid">
+                    
+                    <div class="card">
+                        <div class="card-content">
+                            <h2 class="section-title">Web Light Novels</h2>
+                            <p><strong>The Format:</strong> Short-form narratives characterized by rapid pacing, heavy dialogue, and episodic releases optimized for digital consumption.</p>
+                            <p><strong>The Objective:</strong> While rooted in the aesthetics of Japanese media, my focus here is on the accessibility of the format. I utilize this medium to deploy stories that are fast, agile, and free from the structural density of traditional literature.</p>
+                        </div>
                     </div>
-                    <div class="tier-card">
-                        <h2 class="text-gold">Tier 2: Anthologies</h2>
-                        <p>Pure literary collections. The Silent Verse and other short story collections reside here.</p>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <h2 class="section-title">Web Novels</h2>
+                            <p><strong>The Format:</strong> Long-form fiction published serially on the open web. Unlike static publishing, these stories evolve chapter by chapter, allowing for sprawling plots that react to the live feedback of the reader.</p>
+                            <p><strong>The Objective:</strong> This is the primary engine of the archive. I use this format to construct expansive sagas that grow over time, allowing for a depth of world-building that shorter formats cannot sustain.</p>
+                        </div>
                     </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <h2 class="section-title">Interactive Novels</h2>
+                            <p><strong>The Format:</strong> Text-driven experiences where the reader assumes the role of the protagonist. These narratives hinge on agency, offering branching paths and divergent endings based on the choices made throughout the story.</p>
+                            <p><strong>The Objective:</strong> To breach the wall between author and observer. These projects are experiments in agency, testing how different choices can fracture a single timeline into multiple distinct realities.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <h2 class="section-title">Fan Fictions</h2>
+                            <p><strong>The Format:</strong> Transformative works anchored in pre-existing intellectual properties. These projects explore divergent timelines, "what-if" scenarios, and character studies within established multiverses.</p>
+                            <p><strong>The Objective:</strong> A tribute to the architects who came before. This archive allows me to step into universes I admire but did not build, expanding on their lore and exploring the corners of worlds that their original creators left in shadow.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-content">
+                            <h2 class="section-title">Books</h2>
+                            <p><strong>The Format:</strong> Traditional, self-contained literary constructs. Unlike serials, these works are drafted as complete manuscripts, focusing on structural integrity, polished prose, and a definitive beginning, middle, and end.</p>
+                            <p><strong>The Objective:</strong> The pursuit of permanence. While the web is fluid, a book is static and final. My ultimate ambition is to forge a manuscript capable of standing within the physical world, whether through self-publishing or traditional avenues.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <h2 class="section-title">Visual Novels</h2>
+                            <p><strong>The Format:</strong> A multimedia convergence of literature, art, and sound. These projects utilize character sprites, backgrounds, and audio to create an immersive, atmospheric reading experience.</p>
+                            <p><strong>The Objective:</strong> The ultimate convergence. The long-term protocol is to adapt the text-only archives (Web Novels) into this immersive format. Resources permitting, this serves as the final, definitive version of the stories told here.</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
         </main>
+    </div>
+
+    <div id="settings-modal" class="modal-overlay">
+        <div class="modal-window">
+            <div class="modal-header"><h2>SYSTEM CONFIGURATION</h2><span class="close-btn" onclick="closeSettings()">×</span></div>
+            <div class="modal-body">
+                <div class="setting-group"><label for="theme-select">INTERFACE THEME</label><div class="select-wrapper"><select id="theme-select" onchange="applySettings()"><option value="dark">Void Dark (Default)</option><option value="light">Paper Light</option></select></div></div>
+                <div class="setting-group"><label for="filter-select">VISION CALIBRATION</label><div class="select-wrapper"><select id="filter-select" onchange="applySettings()"><option value="none">Standard Vision</option><option value="deuteranopia">Deuteranopia (Green-Blind)</option><option value="tritanopia">Tritanopia (Blue-Blind)</option><option value="protanopia">Protanopia (Red-Blind)</option></select></div></div>
+            </div>
+            <div class="modal-footer"><p style="font-size: 0.7rem; color: var(--text-muted);">Changes apply automatically.</p></div>
+        </div>
     </div>
 
     <div class="void-decor-container"></div>

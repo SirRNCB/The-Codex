@@ -1,14 +1,69 @@
 /* =========================================
    1. CORE VARIABLES & SETUP
    ========================================= */
-   :root {
+:root {
+    /* --- DEFAULT DARK MODE (The Void) --- */
     --bg-color: #0d1117;
+    --sidebar-bg: #0d1117;
     --card-bg: #161b22;
+    --header-bg: #161b22;
+    --input-bg: #0d1117;
+    
     --text-main: #c9d1d9;
-    --accent: #DC143C;
-    --gold: #F7DF1E;
+    --text-muted: #8b949e;
+    
+    --border-color: #30363d;
+    --shadow-color: rgba(0,0,0,0.5);
+    
+    /* The Grid Color: Subtle dark lines */
+    --grid-line-color: rgba(22, 27, 34, 0.7);
+    
+    /* Colors */
+    --accent: #DC143C;  /* Crimson Red */
+    --gold: #F7DF1E;    /* Gold */
+    --status-online: #3fb950; /* Green */
+    
+    /* Dimensions */
     --sidebar-width: 250px;
     --topbar-height: 50px;
+}
+
+/* --- LIGHT MODE (Paper Version) --- */
+body.light-mode {
+    --bg-color: #f6f8fa;
+    --sidebar-bg: #ffffff;
+    --card-bg: #ffffff;
+    --header-bg: #24292f; /* Dark header for contrast */
+    --input-bg: #ffffff;
+    
+    --text-main: #24292f;
+    --text-muted: #57606a;
+    
+    --border-color: #d0d7de;
+    --shadow-color: rgba(140, 149, 159, 0.2);
+    --grid-line-color: rgba(200, 200, 200, 0.4);
+    
+    --accent: #cf222e; 
+}
+
+/* --- ACCESSIBILITY MODES --- */
+
+/* Deuteranopia (Green-Blind): Blue Accent, Orange Status */
+body.deuteranopia-mode {
+    --accent: #1E90FF; 
+    --status-online: #D29922; 
+}
+
+/* Tritanopia (Blue-Blind): Magenta Accent, Cyan Status */
+body.tritanopia-mode {
+    --accent: #FF0055;       
+    --status-online: #00E5FF; 
+}
+
+/* Protanopia (Red-Blind): Royal Blue Accent, Gold Status */
+body.protanopia-mode {
+    --accent: #4169E1;       
+    --status-online: #FFD700; 
 }
 
 body {
@@ -19,13 +74,13 @@ body {
     padding: 0;
     display: block;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* =========================================
    2. LAYOUT & TYPOGRAPHY
    ========================================= */
 
-/* Headers */
 h1 {
     font-size: 2.5rem;
     margin: 0;
@@ -40,12 +95,11 @@ h2 {
 }
 
 .subtitle {
-    color: #8b949e;
+    color: var(--text-muted);
     font-style: italic;
     margin-top: 10px;
 }
 
-/* Dashboard Header (Centered) */
 .header-dashboard {
     text-align: center;
     padding: 20px 0;
@@ -53,22 +107,19 @@ h2 {
     margin-bottom: 40px;
 }
 
-/* Page Header (Left Aligned) */
 .header-page {
     border-bottom: 2px solid var(--accent);
     margin-bottom: 40px;
 }
 
-/* Section Titles */
 .section-title {
-    color: #8b949e;
-    border-bottom: 1px solid #30363d;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 10px;
     margin-bottom: 20px;
     font-size: 1.2rem;
 }
 
-/* Wrapper */
 .page-wrapper {
     margin-top: var(--topbar-height);
     margin-left: var(--sidebar-width);
@@ -82,32 +133,27 @@ h2 {
     width: 100%;
 }
 
-.layout-dashboard {
-    max-width: 95%;
-}
-
-.layout-reader {
-    max-width: 800px;
-}
+.layout-dashboard { max-width: 1200px; }
+.layout-reader { max-width: 800px; }
 
 /* =========================================
    3. NAVIGATION (Topbar & Sidebar)
    ========================================= */
 
-/* Topbar */
 .topbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: var(--topbar-height);
-    background-color: #161b22;
-    border-bottom: 1px solid #30363d;
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
     padding: 0 20px;
     z-index: 100;
     box-sizing: border-box;
+    color: #c9d1d9; /* Always light text in header */
 }
 
 .site-logo {
@@ -119,9 +165,9 @@ h2 {
 }
 
 .search-bar input {
-    background: #0d1117;
-    border: 1px solid #30363d;
-    color: #c9d1d9;
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
     padding: 8px 15px;
     border-radius: 4px;
     font-family: 'Courier Prime', monospace;
@@ -152,32 +198,27 @@ h2 {
     left: 0;
     width: var(--sidebar-width);
     height: 100%;
-    background-color: #0d1117;
-    border-right: 1px solid #30363d;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
     padding: 20px;
     overflow-y: auto;
     box-sizing: border-box;
     z-index: 95;
+    transition: background-color 0.3s ease;
 }
 
-.nav-section {
-    margin-bottom: 30px;
-}
+.nav-section { margin-bottom: 30px; }
 
 .nav-section h3 {
     font-size: 0.9rem;
-    color: #8b949e;
+    color: var(--text-muted);
     margin-bottom: 10px;
-    border-bottom: 1px solid #30363d;
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 5px;
     letter-spacing: 1px;
 }
 
-.sidebar-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+.sidebar-nav ul { list-style: none; padding: 0; margin: 0; }
 
 .sidebar-nav li a {
     display: block;
@@ -198,24 +239,26 @@ h2 {
     font-weight: bold;
 }
 
+#system-status {
+    font-size: 0.8rem;
+    color: var(--status-online); /* Uses the variable now */
+}
+
 /* =========================================
    4. DRAWER SYSTEM
    ========================================= */
+
 .drawer-trigger {
     cursor: pointer;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     transition: color 0.2s;
+    padding: 5px 0;
 }
 
-.drawer-trigger:hover {
-    color: var(--accent);
-}
-
-.arrow {
-    font-size: 0.7rem;
-    transition: transform 0.3s;
-}
+.drawer-trigger:hover { color: var(--accent); }
+.arrow { font-size: 0.7rem; transition: transform 0.3s; }
 
 .drawer-panel {
     position: fixed;
@@ -223,9 +266,9 @@ h2 {
     left: 250px;
     width: 300px;
     height: 100%;
-    background-color: #0d1117;
-    border-right: 1px solid #30363d;
-    box-shadow: 10px 0 20px rgba(0,0,0,0.5);
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    box-shadow: 10px 0 20px var(--shadow-color);
     z-index: 90;
     transform: translateX(-100%);
     opacity: 0;
@@ -239,15 +282,11 @@ h2 {
     pointer-events: auto;
 }
 
-.drawer-inner {
-    padding: 20px;
-    height: 100%;
-    overflow-y: auto;
-}
+.drawer-inner { padding: 20px; height: 100%; overflow-y: auto; }
 
 .drawer-header {
     font-size: 0.8rem;
-    color: #8b949e;
+    color: var(--text-muted);
     border-bottom: 2px solid var(--accent);
     padding-bottom: 5px;
     margin-bottom: 15px;
@@ -258,8 +297,8 @@ h2 {
     display: flex;
     gap: 15px;
     padding: 10px;
-    background: #161b22;
-    border: 1px solid #30363d;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
     margin-bottom: 10px;
     text-decoration: none;
     border-radius: 4px;
@@ -278,22 +317,21 @@ h2 {
     flex-shrink: 0;
 }
 
-.drawer-text h4 {
-    margin: 0;
-    font-size: 0.9rem;
-    color: var(--text-main);
+.drawer-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
 }
 
-.drawer-text span {
-    font-size: 0.75rem;
-    color: #8b949e;
-}
+.drawer-text h4 { margin: 0; font-size: 0.9rem; color: var(--text-main); }
+.drawer-text span { font-size: 0.75rem; color: var(--text-muted); }
 
 /* =========================================
-   5. COMPONENTS (Cards, Stats, Logs, Tiers)
+   5. COMPONENTS (Cards, Stats, Logs)
    ========================================= */
 
-/* Portal Grid */
 .portal-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -303,7 +341,7 @@ h2 {
 
 .card {
     background-color: var(--card-bg);
-    border: 1px solid #30363d;
+    border: 1px solid var(--border-color);
     border-radius: 6px;
     text-decoration: none;
     color: inherit;
@@ -319,16 +357,14 @@ h2 {
     box-shadow: 0 10px 30px -10px rgba(220, 20, 60, 0.3);
 }
 
-.card-content {
-    padding: 25px;
-}
+.card-content { padding: 25px; }
 
 .status {
     display: inline-block;
     margin-top: 15px;
     font-size: 0.8rem;
     padding: 4px 8px;
-    border: 1px solid #30363d;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     color: var(--text-main);
 }
@@ -338,9 +374,7 @@ h2 {
     color: var(--accent);
 }
 
-.author-card:hover h2 {
-    color: var(--gold);
-}
+.author-card:hover h2 { color: var(--gold); }
 
 /* Stats Ribbon */
 .stats-grid {
@@ -351,8 +385,8 @@ h2 {
 }
 
 .stat-box {
-    background-color: #161b22;
-    border: 1px solid #30363d;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
     border-radius: 6px;
     padding: 20px;
     text-align: center;
@@ -373,84 +407,41 @@ h2 {
 
 .stat-label {
     font-size: 0.75rem;
-    color: #8b949e;
+    color: var(--text-muted);
     letter-spacing: 1px;
     font-weight: bold;
 }
 
-.text-gold {
-    color: var(--gold);
-}
+.text-gold { color: var(--gold); }
 
 /* System Logs */
-.system-logs-section {
-    margin-top: 60px;
-}
+.system-logs-section { margin-top: 60px; }
 
 .log-box {
-    background: #161b22;
-    border: 1px solid #30363d;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
     border-radius: 6px;
     padding: 20px;
 }
 
-.log-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 0.9rem;
-}
+.log-list { list-style: none; padding: 0; margin: 0; font-size: 0.9rem; }
 
 .log-item {
     margin-bottom: 15px;
-    border-bottom: 1px dashed #30363d;
+    border-bottom: 1px dashed var(--border-color);
     padding-bottom: 10px;
 }
 
-.log-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-}
+.log-item:last-child { border-bottom: none; margin-bottom: 0; }
 
-.log-tag {
-    font-weight: bold;
-}
-
-.tag-system {
-    color: #8b949e;
-}
-
-.tag-date {
-    color: var(--accent);
-}
-
-.tag-update {
-    color: var(--gold);
-}
-
-/* Project Hub (Tiers) */
-.tier-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-top: 40px;
-}
-
-.tier-card {
-    background: #161b22;
-    padding: 20px;
-    border: 1px solid #30363d;
-}
-
-@media (max-width: 768px) {
-    .tier-grid {
-        grid-template-columns: 1fr;
-    }
-}
+.log-tag { font-weight: bold; }
+.tag-system { color: var(--text-muted); }
+.tag-date { color: var(--accent); }
+.tag-update { color: var(--gold); }
 
 /* Wiki / Lore Styles */
 .article-header {
-    border-bottom: 1px solid #30363d;
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 10px;
     margin-bottom: 20px;
     display: flex;
@@ -460,7 +451,7 @@ h2 {
 
 .article-actions button {
     background: none;
-    border: 1px solid #30363d;
+    border: 1px solid var(--border-color);
     color: var(--accent);
     padding: 5px 10px;
     cursor: pointer;
@@ -474,14 +465,11 @@ h2 {
     color: white;
 }
 
-.article-body {
-    line-height: 1.8;
-    font-size: 1.05rem;
-}
+.article-body { line-height: 1.8; font-size: 1.05rem; }
 
 .flavor-text {
     font-style: italic;
-    color: #8b949e;
+    color: var(--text-muted);
     border-left: 3px solid var(--accent);
     padding-left: 15px;
     margin-bottom: 30px;
@@ -491,11 +479,11 @@ h2 {
 .infobox {
     float: right;
     width: 300px;
-    background-color: #161b22;
+    background-color: var(--card-bg);
     border: 1px solid var(--accent);
     margin-left: 30px;
     margin-bottom: 20px;
-    box-shadow: 5px 5px 0px #0d1117;
+    box-shadow: 5px 5px 0px var(--shadow-color);
 }
 
 .infobox-header {
@@ -511,70 +499,144 @@ h2 {
 .infobox-image img {
     width: 100%;
     display: block;
-    border-bottom: 1px solid #30363d;
+    border-bottom: 1px solid var(--border-color);
 }
 
-.infobox-data {
-    padding: 15px;
-}
+.infobox-data { padding: 15px; }
 
 .data-row {
     display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
     font-size: 0.9rem;
-    border-bottom: 1px dashed #30363d;
+    border-bottom: 1px dashed var(--border-color);
     padding-bottom: 4px;
 }
 
-.data-row:last-child {
-    border-bottom: none;
+.data-row:last-child { border-bottom: none; }
+
+.label { font-weight: bold; }
+.value { color: var(--text-muted); text-align: right; }
+.text-restricted { color: var(--accent); }
+
+/* =========================================
+   6. SETTINGS MODAL SYSTEM
+   ========================================= */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(2px);
+    z-index: 2000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.label {
-    font-weight: bold;
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
 }
 
-.value {
-    color: #8b949e;
-    text-align: right;
+.modal-window {
+    background-color: var(--card-bg);
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 20px var(--shadow-color);
+    width: 400px;
+    max-width: 90%;
+    padding: 2px;
+    border-radius: 6px;
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.text-restricted {
+.modal-overlay.active .modal-window { transform: scale(1); }
+
+.modal-header {
+    background-color: var(--bg-color);
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    font-size: 1.1rem;
+    margin: 0;
     color: var(--accent);
+    letter-spacing: 1px;
+}
+
+.close-btn {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    line-height: 1;
+}
+
+.close-btn:hover { color: var(--accent); }
+
+.modal-body { padding: 30px; background-color: var(--card-bg); }
+
+.setting-group { margin-bottom: 25px; }
+
+.setting-group label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.select-wrapper select {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    font-family: 'Courier Prime', monospace;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+}
+
+.select-wrapper select:focus { border-color: var(--accent); }
+
+.modal-footer {
+    padding: 10px 20px;
+    text-align: center;
+    background-color: var(--bg-color);
+    border-top: 1px solid var(--border-color);
 }
 
 /* =========================================
-   6. EFFECTS & FOOTER
+   7. EFFECTS & FOOTER
    ========================================= */
+
 footer {
     text-align: center;
     padding: 20px;
-    color: #484f58;
+    color: var(--text-muted);
     font-size: 0.8rem;
     margin-top: 40px;
 }
 
-/* Glitch */
 @keyframes violent-shake {
-    0% {
-        transform: translate(1px, 1px) rotate(0deg);
-    }
-    10% {
-        transform: translate(-3px, -2px) rotate(-1deg);
-    }
-    20% {
-        transform: translate(-6px, 0px) rotate(1deg);
-    }
-    50% {
-        transform: translate(-3px, 2px) rotate(-1deg);
-    }
-    80% {
-        transform: translate(-1px, -1px) rotate(1deg);
-    }
-    100% {
-        transform: translate(1px, -2px) rotate(-1deg);
-    }
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-3px, -2px) rotate(-1deg); }
+    20% { transform: translate(-6px, 0px) rotate(1deg); }
+    50% { transform: translate(-3px, 2px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
 .void-glitch {
@@ -585,7 +647,6 @@ footer {
     overflow: hidden;
 }
 
-/* Background Grid */
 .void-decor-container {
     position: fixed;
     top: 0;
@@ -595,24 +656,16 @@ footer {
     pointer-events: none;
     z-index: -1;
     overflow: hidden;
-    background-image: linear-gradient(rgba(22, 27, 34, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(22, 27, 34, 0.5) 1px, transparent 1px);
+    background-image: 
+        linear-gradient(var(--grid-line-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line-color) 1px, transparent 1px);
     background-size: 50px 50px;
     background-position: center;
+    transition: background-image 0.3s ease; 
 }
 
-/* Responsive */
 @media (max-width: 900px) {
-    .sidebar-nav {
-        display: none;
-    }
-
-    .page-wrapper {
-        margin-left: 0;
-    }
-
-    .infobox {
-        float: none;
-        width: 100%;
-        margin: 0 0 20px 0;
-    }
+    .sidebar-nav { display: none; }
+    .page-wrapper { margin-left: 0; }
+    .infobox { float: none; width: 100%; margin: 0 0 20px 0; }
 }

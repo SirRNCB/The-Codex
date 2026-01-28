@@ -25,9 +25,19 @@
             <h3 class="drawer-trigger" onclick="toggleDrawer('projects')">PROJECTS <span class="arrow">▶</span></h3>
             <ul><li><a href="projects_hub.html">The Manifesto</a></li></ul>
         </div>
+        
+        <div class="nav-section">
+            <h3>SYSTEM</h3>
+            <ul>
+                <li class="drawer-trigger" onclick="openSettings()">
+                    <span>⚙ Parameters</span> 
+                </li>
+            </ul>
+        </div>
+
         <div class="nav-section" style="margin-top: auto;">
             <h3>SYSTEM STATUS</h3>
-            <div id="system-status" style="font-size: 0.8rem; color: #3fb950;">● OPERATIONAL</div>
+            <div id="system-status">● OPERATIONAL</div>
         </div>
     </aside>
 
@@ -58,7 +68,6 @@
 
     <div class="page-wrapper">
         <main class="main-content layout-dashboard">
-            
             <header class="header-dashboard">
                 <h1>ARCHIVE DASHBOARD</h1>
                 <p class="subtitle">"Where all realities converge."</p>
@@ -117,8 +126,39 @@
                     </ul>
                 </div>
             </section>
-
         </main>
+    </div>
+
+    <div id="settings-modal" class="modal-overlay">
+        <div class="modal-window">
+            <div class="modal-header">
+                <h2>SYSTEM CONFIGURATION</h2>
+                <span class="close-btn" onclick="closeSettings()">×</span>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label for="theme-select">INTERFACE THEME</label>
+                    <div class="select-wrapper">
+                        <select id="theme-select" onchange="applySettings()">
+                            <option value="dark">Void Dark (Default)</option>
+                            <option value="light">Paper Light</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <label for="filter-select">VISION CALIBRATION</label>
+                    <div class="select-wrapper">
+                        <select id="filter-select" onchange="applySettings()">
+                            <option value="none">Standard Vision</option>
+                            <option value="deuteranopia">Deuteranopia (Green-Blind)</option>
+                            <option value="tritanopia">Tritanopia (Blue-Blind)</option>
+                            <option value="protanopia">Protanopia (Red-Blind)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"><p style="font-size: 0.7rem; color: var(--text-muted);">Changes apply automatically.</p></div>
+        </div>
     </div>
 
     <div class="void-decor-container"></div>
